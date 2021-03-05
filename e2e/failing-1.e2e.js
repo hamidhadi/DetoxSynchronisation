@@ -3,14 +3,10 @@ describe('Failing-1', () => {
     await device.launchApp({ newInstance: true })
   });
 
-  beforeEach(async () => {
-    await device.reloadReactNative();
-  });
-
   it('should find the cube on Modal screen', async () => {
     await device.disableSynchronization()
     await element(by.id('modal-button')).tap()
-    await waitFor(element(by.id('cube'))).toBeVisible();
+    await waitFor(element(by.id('cube'))).toBeVisible().withTimeout(2000);
     await device.enableSynchronization()
   });
 

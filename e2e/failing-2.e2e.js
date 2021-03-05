@@ -1,20 +1,16 @@
-describe('Success-2', () => {
+describe('Failing-2', () => {
   beforeAll(async () => {
     await device.launchApp({ newInstance: true })
-  });
-
-  beforeEach(async () => {
-    await device.reloadReactNative();
   });
 
   it('should find the cube on Modal screen', async () => {
     await device.disableSynchronization()
     await element(by.id('modal-button')).tap()
-    await waitFor(element(by.id('cube'))).toBeVisible();
-    await device.launchApp({ newInstance: true })
+    await waitFor(element(by.id('cube'))).toBeVisible().withTimeout(2000);
   });
 
   it('should find the test text on Home screen', async () => {
+    await device.enableSynchronization()
     await element(by.id('show-text')).tap()
     await expect(element(by.id('test-text'))).toBeVisible()
   });
